@@ -12,25 +12,33 @@
 
 #include "ft_printf.h"
 
-/*
-int		ft_argc(char *str)
+void		ft_parse(char *str, t_param **node)
 {
-	
+	int i;
 
-	str_count = 0;
-	while (str[i])
+	i = -1;
+	while (str[++i])
 	{
-		if (str[i] == '%' && str[i + 1] == 's')
-		{
-			str_count++;
-			i += 2;
-		}
+		if (str[i] == '%')
+			node->c = str[i + 1];
 
 	}
 }
-*/
 
-/*
+int		ft_argc(char *str)
+{
+	t_param *node;
+	if (!node->head)
+		node = node->head;
+	i = 0;
+	while (str[i] != '%')
+		i++;
+	if (i != 0 && node->data = (char *)malloc(sizeof(char) * i + 1))
+		node->data = ft_strlcpy(str, i);
+	else if (i == 0)
+		ft_parse(str, &node);
+}
+
 void		ft_printf(char *args, ...)
 {
 	int	i;
@@ -48,7 +56,7 @@ void		ft_printf(char *args, ...)
 		i++;
 	}
 }
-*/
+
 
 
 int		main()
@@ -61,9 +69,13 @@ int		main()
 	int		min = 19;
 	setbuf(stdout, NULL);
 	ptr = NULL;
+
+	
+
+	// testing below	
 //	ft_printf("%s, %s", weekday, month);
-	printf("%s\n%c\n%d\n%p\n%i\n%o\n%u\n%x\n", "test", 'X', 6.7, ptr, 7, 8, day, 29);
-	printf("3\n");
-	printf("%s, %s %d, %.2d:%.2d\n", weekday, month, day, hour, min);
+//	printf("%s\n%c\n%d\n%p\n%i\n%o\n%u\n%x\n", "test", 'X', 6, ptr, 7, 8, day, 29);
+//	printf("3\n");
+//	printf("%s, %s %d, %.2d:%.2d\n", weekday, month, day, hour, min);
 	return (0);
 }
