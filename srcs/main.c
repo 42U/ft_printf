@@ -6,7 +6,7 @@
 /*   By: issmith <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/06 20:14:28 by issmith           #+#    #+#             */
-/*   Updated: 2018/09/09 07:08:45 by issmith          ###   ########.fr       */
+/*   Updated: 2018/09/09 08:34:47 by issmith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,11 +150,10 @@ int		main()
 	
 	// testing happens here
 //	ft_printf("%s%s the %dth of %s!!!\n", msg, weekday, date, month);
-	ft_printf("%%%s\n%c\n%d\n%o\n%x\n%i\n%u\n%p\n", "test", 'X', 10, 7, 29, 29, 65526, &date);
+	ft_printf("this is my ft_printf:\n%%%s\n%c\n%d\n%o\n%x\n%i\n%u\n%p\n", "test", 'X', 10, 7, 29, 29, 65526, &date);
 
-	ft_putstr("\nsystem printf:\n");
 //	printf("%s%s the %dth of %s!!!\n", msg, weekday, date, month);
-	printf("%%%s\n%c\n%d\n%o\n%x\n%i\n%u\n%p\n", "test", 'X', 10, 7, 29, 29, 65526, &date);
+	printf("this is the systems printf:\n%%%s\n%c\n%d\n%o\n%x\n%i\n%u\n%p\n", "test", 'X', 10, 7, 29, 29, 65526, &date);
 	
 
 
