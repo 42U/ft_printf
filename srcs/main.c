@@ -6,7 +6,7 @@
 /*   By: issmith <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/06 20:14:28 by issmith           #+#    #+#             */
-/*   Updated: 2018/09/09 05:23:34 by issmith          ###   ########.fr       */
+/*   Updated: 2018/09/09 07:08:45 by issmith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void		ft_parse(char *str, t_param **node)
 	{
 		if (str[i] == '%')
 			node[0]->c = str[i + 1];
-
 	}
 }
 
@@ -68,6 +67,8 @@ void		ft_printf(char *args, ...)
 	int		i;
 	int		x;
 	unsigned char a;
+	char	*tmp;
+	char	**ptr;
 
 	arr = (char **)malloc(sizeof(char *) * 100); // this is bad need exact number 
 	i = 0;
@@ -80,23 +81,35 @@ void		ft_printf(char *args, ...)
 		{
 			f = args[x + 1];
 			x += 2;
-			if (ft_identify(f) != 0)
+			if (f == '%')
+				write(1, "%", 1);
+			else if (ft_identify(f) != 0)
 			{
 				if (f == 's')
 					ft_putstr(va_arg(ap, char*));
-			else if (f == 'd')
-				ft_putnbr(va_arg(ap, int));
-			else if (f == 'c')
-			{
-				a = (unsigned char)va_arg(ap, int);
-				write(1, &a, 1);
-			}
-			else if (f == 'o')
-				ft_putstr(ft_convert(va_arg(ap, unsigned int), 8));
-			else if (f == 'x')
-				ft_putstr(ft_convert(va_arg(ap, unsigned int), 16));
-			else
-				ft_putstr("error\n");
+				else if (f == 'd')
+					ft_putnbr(va_arg(ap, int));
+				else if (f == 'i')
+					ft_putnbr((signed int)va_arg(ap, signed int));
+				else if (f == 'c')
+				{
+					a = (unsigned char)va_arg(ap, int);
+					write(1, &a, 1);
+				}
+				else if (f == 'o')
+					ft_putstr(ft_convert(va_arg(ap, unsigned int), 8));
+				else if (f == 'u')
+					ft_putnbr((unsigned int)va_arg(ap, unsigned int));
+				else if (f == 'x')
+					ft_putstr(ft_convert(va_arg(ap, unsigned int), 16));
+				else if (f == 'p')
+				{
+					tmp = va_arg(ap, char *);
+					ptr = &tmp;
+					ft_putstr(*ptr);
+				}
+				else
+					ft_putstr("error\n");
 			}
 		}
 		while (args[x] != '%' && args[x] != '\0')
@@ -137,11 +150,11 @@ int		main()
 	
 	// testing happens here
 //	ft_printf("%s%s the %dth of %s!!!\n", msg, weekday, date, month);
-	ft_printf("%s\n%c\n%d\n%o\n%x\n", "test", 'X', 10, 7, 29);
+	ft_printf("%%%s\n%c\n%d\n%o\n%x\n%i\n%u\n%p\n", "test", 'X', 10, 7, 29, 29, 65526, &date);
 
 	ft_putstr("\nsystem printf:\n");
 //	printf("%s%s the %dth of %s!!!\n", msg, weekday, date, month);
-	printf("%s\n%c\n%d\n%o\n%x\n", "test", 'X', 10, 7, 29);
+	printf("%%%s\n%c\n%d\n%o\n%x\n%i\n%u\n%p\n", "test", 'X', 10, 7, 29, 29, 65526, &date);
 	
 
 
