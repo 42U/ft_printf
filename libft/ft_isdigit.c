@@ -1,31 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: issmith <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/06 20:25:54 by issmith           #+#    #+#             */
-/*   Updated: 2018/09/06 20:27:42 by issmith          ###   ########.fr       */
+/*   Created: 2018/07/12 20:53:30 by issmith           #+#    #+#             */
+/*   Updated: 2018/07/17 15:33:55 by issmith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-typedef struct		s_param
+int		ft_isdigit(int c)
 {
-	char		*data;
-	char		c;
-	int		ac;
-	int		inc;
-	struct s_param	*next;
-	struct s_param	*prev;
-	struct s_param	*head;
-	struct s_param	*curr;
-}			t_param;
-
-# include <stdio.h>
-# include <stdarg.h>
-
-#endif
+	return (('0' <= c) && (c <= '9'));
+}
