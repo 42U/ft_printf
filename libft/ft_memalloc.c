@@ -6,7 +6,7 @@
 /*   By: issmith <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 11:53:34 by issmith           #+#    #+#             */
-/*   Updated: 2018/07/17 12:32:43 by issmith          ###   ########.fr       */
+/*   Updated: 2018/09/09 08:55:36 by issmith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	*ft_memalloc(size_t size)
 	char	*str;
 	size_t	i;
 
-	ptr = (void *)malloc(sizeof(void *) * (size));
+	ptr = NULL;
+	ptr = (void *)malloc(sizeof(void) * (size));
 	if (ptr == NULL)
 		return (NULL);
 	if (!size)

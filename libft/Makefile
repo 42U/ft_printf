@@ -6,7 +6,7 @@
 #    By: issmith <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/16 19:52:51 by issmith           #+#    #+#              #
-#    Updated: 2018/07/17 20:31:16 by issmith          ###   ########.fr        #
+#    Updated: 2018/09/09 08:56:53 by issmith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ $(NAME):
 	$(CC) $(CFLAGS) $(SRC) -I libft.h
 	ar rc $(NAME) $(OUT)
 	ranlib $(NAME)
+	rm -f $(OUT)
 
 clean:
 	/bin/rm -f $(OUT)
