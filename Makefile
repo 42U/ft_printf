@@ -6,7 +6,7 @@
 #    By: issmith <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/23 15:49:11 by issmith           #+#    #+#              #
-#    Updated: 2018/09/09 05:23:23 by issmith          ###   ########.fr        #
+#    Updated: 2018/09/09 12:24:12 by issmith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ FTPLNK = -L./ -lft_printf
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 CFLAGS += -I incl/
+INCL = -I incl/
 RM = rm -rf
 
 #	colors
@@ -60,7 +61,7 @@ $(ODIR)%.o: srcs/%.c | build
 	@echo "$(WHITE).$(RESET)"
 	@echo "$(CYAN)$(ANAME)..$(WHITE)$(RESET)"
 	@echo "$(YELLOW)Compiling...$(RESET)"
-	@$(CC) $(CFLAGS) -I$(INCDIR) $(FTINC) -o $@ -c $<
+	@$(CC) $(CFLAGS) $(FTINC) -o $@ -c $<
 
 re: fclean all
 
@@ -80,4 +81,15 @@ dbg:
 
 build:
 	@mkdir -p $(ODIR)
+
+me: $(OBJS)
+	@$(CC) $(INCL) -o $(NAME) $(OBJS) $(FTLNK)
+	@echo "$(RESET)$(RED)Building binary....$(WHITE)$(RESET)"
+	@echo "$(GREEN)OK! its ready...$(RESET)"
+
+$(ODIR)%.o: srcs/%.c | build
+	@echo "$(WHITE).$(RESET)"
+	@echo "$(CYAN)$(ANAME)..$(WHITE)$(RESET)"
+	@echo "$(YELLOW)Compiling...$(RESET)"
+	@$(CC) $(INCL) $(FTINC) -o $@ -c $<
 
