@@ -1,41 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: issmith <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/06 20:25:54 by issmith           #+#    #+#             */
-/*   Updated: 2018/09/12 20:24:25 by issmith          ###   ########.fr       */
+/*   Created: 2018/07/15 21:57:08 by issmith           #+#    #+#             */
+/*   Updated: 2018/07/16 02:24:40 by issmith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <stdarg.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include "../libft/libft.h"
-
-typedef struct		s_param
+static size_t	ft_intlen(int n)
 {
-	char			**data;
+	size_t	i;
+
+	i = 1;
+	while (n /= 10)
+		i++;
+	return (i);
+}
+
+char			*ft_itoa(int n)
+{
 	char			*str;
-	char			*tmp;
-	char			c;
-	int				i;
-	int				k;
-	int				x;
-	int				ac;
-	int				inc;
-	struct s_param	*next;
-	struct s_param	*prev;
-	struct s_param	*head;
-	struct s_param	*curr;
-}					t_param;
+	size_t			len;
+	unsigned int	buf;
 
-void	ft_init(t_param **node);
-
-#endif
+	len = ft_intlen(n);
+	buf = n;
+	if (n < 0)
+	{
+		buf = -n;
+		len++;
+	}
+	if (!(str = ft_strnew(len)))
+		return (NULL);
+	str[--len] = buf % 10 + '0';
+	while (buf /= 10)
+		str[--len] = buf % 10 + '0';
+	if (n < 0)
+		str[0] = '-';
+	return (str);
+}

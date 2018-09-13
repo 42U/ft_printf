@@ -1,43 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_convert.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: issmith <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/09 03:38:21 by issmith           #+#    #+#             */
-/*   Updated: 2018/09/09 05:44:35 by issmith          ###   ########.fr       */
+/*   Created: 2018/07/16 02:13:14 by issmith           #+#    #+#             */
+/*   Updated: 2018/07/16 02:35:05 by issmith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_convert(unsigned int num, int base)
+void	ft_putnbr_fd(int nb, int fd)
 {
-	static char conv[16];
-	static char buf[50];
-	char		*ptr;
-	int			i;
-	char		c;
-
-	i = 0;
-	c = 48;
-	while (i < 16 && c >= 48 && c <= 57)
+	if (nb == -2147483648)
+		ft_putstr_fd("-2147483648", fd);
+	else
 	{
-		conv[i++] = c++;
-		if (c == 58)
+		if (nb < 0)
 		{
-			c = 97;
-			while (i < 16)
-				conv[i++] = c++;
+			ft_putchar_fd(('-'), fd);
+			nb *= -1;
 		}
+		if (nb > 9)
+			ft_putnbr_fd((nb / 10), fd);
+		ft_putchar_fd((nb % 10) + '0', fd);
 	}
-	ptr = &buf[49];
-	*ptr = '\0';
-	while (num != 0)
-	{
-		*--ptr = conv[num % base];
-		num /= base;
-	}
-	return (ptr);
 }

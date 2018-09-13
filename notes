@@ -11,3 +11,22 @@ free(node);
 free(param);
 free(arr);
 
+
+the system printf if passed a flag it doesn't recognize ignores it if coupled
+with another flag it does recognize, it completes the flag it recognizes.
+
+even if the the flag it doesnt recognize is in the middle.
+
+i was just making sure that it was handled by the compiler
+
+if i put the variadic arguments in an array/list then i can call/validate the
+order and make sure that the parameter format match the list.
+
+// for keeping track of the number of parameters passed from the main.
+have to make sure that the *format string is counted for the number of
+parameters passed. 
+count the letters after the % sign and then count the number of va_arg calls
+
+ok so if you copy the input to an array then when checking the parameters
+passed you can put the parameter to its format identifier.
+

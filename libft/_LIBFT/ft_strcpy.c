@@ -1,43 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_convert.c                                       :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: issmith <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/09 03:38:21 by issmith           #+#    #+#             */
-/*   Updated: 2018/09/09 05:44:35 by issmith          ###   ########.fr       */
+/*   Created: 2018/07/11 20:39:44 by issmith           #+#    #+#             */
+/*   Updated: 2018/07/17 04:51:10 by issmith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_convert(unsigned int num, int base)
+char	*ft_strcpy(char *dst, const char *src)
 {
-	static char conv[16];
-	static char buf[50];
-	char		*ptr;
-	int			i;
-	char		c;
+	int	i;
 
 	i = 0;
-	c = 48;
-	while (i < 16 && c >= 48 && c <= 57)
+	while (src[i] != '\0')
 	{
-		conv[i++] = c++;
-		if (c == 58)
-		{
-			c = 97;
-			while (i < 16)
-				conv[i++] = c++;
-		}
+		dst[i] = src[i];
+		i++;
 	}
-	ptr = &buf[49];
-	*ptr = '\0';
-	while (num != 0)
-	{
-		*--ptr = conv[num % base];
-		num /= base;
-	}
-	return (ptr);
+	dst[i] = '\0';
+	return (dst);
 }

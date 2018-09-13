@@ -1,43 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_convert.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: issmith <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/09 03:38:21 by issmith           #+#    #+#             */
-/*   Updated: 2018/09/09 05:44:35 by issmith          ###   ########.fr       */
+/*   Created: 2018/07/17 17:39:08 by issmith           #+#    #+#             */
+/*   Updated: 2018/07/17 17:48:13 by issmith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_convert(unsigned int num, int base)
+t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	static char conv[16];
-	static char buf[50];
-	char		*ptr;
-	int			i;
-	char		c;
+	t_list		*new;
+	t_list		*list;
 
-	i = 0;
-	c = 48;
-	while (i < 16 && c >= 48 && c <= 57)
+	if (lst == NULL)
+		return (NULL);
+	list = f(lst);
+	new = list;
+	while (lst->next != NULL)
 	{
-		conv[i++] = c++;
-		if (c == 58)
+		lst = lst->next;
+		if ((list->next = f(lst)) == NULL)
 		{
-			c = 97;
-			while (i < 16)
-				conv[i++] = c++;
+			free(list->next);
+			return (NULL);
 		}
+		list = list->next;
 	}
-	ptr = &buf[49];
-	*ptr = '\0';
-	while (num != 0)
-	{
-		*--ptr = conv[num % base];
-		num /= base;
-	}
-	return (ptr);
+	return (new);
 }

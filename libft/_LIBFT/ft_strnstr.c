@@ -1,43 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_convert.c                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: issmith <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/09 03:38:21 by issmith           #+#    #+#             */
-/*   Updated: 2018/09/09 05:44:35 by issmith          ###   ########.fr       */
+/*   Created: 2018/07/17 15:31:01 by issmith           #+#    #+#             */
+/*   Updated: 2018/07/17 15:31:03 by issmith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_convert(unsigned int num, int base)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	static char conv[16];
-	static char buf[50];
-	char		*ptr;
-	int			i;
-	char		c;
+	size_t		i;
+	size_t		j;
 
 	i = 0;
-	c = 48;
-	while (i < 16 && c >= 48 && c <= 57)
+	while (i < len && haystack[i] != '\0')
 	{
-		conv[i++] = c++;
-		if (c == 58)
-		{
-			c = 97;
-			while (i < 16)
-				conv[i++] = c++;
-		}
+		j = 0;
+		while (i + j < len && haystack[i + j] == needle[j] && needle[j] != '\0')
+			j++;
+		if (needle[j] == '\0')
+			return ((char *)haystack + i);
+		i++;
 	}
-	ptr = &buf[49];
-	*ptr = '\0';
-	while (num != 0)
-	{
-		*--ptr = conv[num % base];
-		num /= base;
-	}
-	return (ptr);
+	return (NULL);
 }

@@ -1,41 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: issmith <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/06 20:25:54 by issmith           #+#    #+#             */
-/*   Updated: 2018/09/12 20:24:25 by issmith          ###   ########.fr       */
+/*   Created: 2018/07/14 20:29:22 by issmith           #+#    #+#             */
+/*   Updated: 2018/07/17 12:53:04 by issmith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <stdarg.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include "../libft/libft.h"
-
-typedef struct		s_param
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char			**data;
 	char			*str;
-	char			*tmp;
-	char			c;
-	int				i;
-	int				k;
-	int				x;
-	int				ac;
-	int				inc;
-	struct s_param	*next;
-	struct s_param	*prev;
-	struct s_param	*head;
-	struct s_param	*curr;
-}					t_param;
+	unsigned int	i;
+	int				len;
 
-void	ft_init(t_param **node);
-
-#endif
+	if (s && f)
+	{
+		i = 0;
+		len = ft_strlen((char *)s);
+		if (!(str = (char *)malloc(sizeof(char) * (len + 1))))
+			return (NULL);
+		while (s[i] != 0)
+		{
+			str[i] = f(i, s[i]);
+			i++;
+		}
+		str[i] = '\0';
+		return (str);
+	}
+	return (NULL);
+}

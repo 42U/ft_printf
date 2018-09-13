@@ -1,43 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_convert.c                                       :+:      :+:    :+:   */
+/*   ft_words.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: issmith <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/09 03:38:21 by issmith           #+#    #+#             */
-/*   Updated: 2018/09/09 05:44:35 by issmith          ###   ########.fr       */
+/*   Created: 2018/07/15 11:46:03 by issmith           #+#    #+#             */
+/*   Updated: 2018/07/17 15:07:44 by issmith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_convert(unsigned int num, int base)
+int		ft_words(char const *str, char c)
 {
-	static char conv[16];
-	static char buf[50];
-	char		*ptr;
-	int			i;
-	char		c;
+	int i;
+	int j;
 
 	i = 0;
-	c = 48;
-	while (i < 16 && c >= 48 && c <= 57)
+	j = 0;
+	while (*str != '\0')
 	{
-		conv[i++] = c++;
-		if (c == 58)
+		if (i == 1 && *str == c)
+			i = 0;
+		if (i == 0 && *str != c)
 		{
-			c = 97;
-			while (i < 16)
-				conv[i++] = c++;
+			i = 1;
+			j++;
 		}
+		str++;
 	}
-	ptr = &buf[49];
-	*ptr = '\0';
-	while (num != 0)
-	{
-		*--ptr = conv[num % base];
-		num /= base;
-	}
-	return (ptr);
+	return (j);
 }

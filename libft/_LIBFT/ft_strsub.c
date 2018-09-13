@@ -1,43 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_convert.c                                       :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: issmith <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/09 03:38:21 by issmith           #+#    #+#             */
-/*   Updated: 2018/09/09 05:44:35 by issmith          ###   ########.fr       */
+/*   Created: 2018/07/14 22:48:08 by issmith           #+#    #+#             */
+/*   Updated: 2018/07/17 20:32:40 by issmith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_convert(unsigned int num, int base)
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	static char conv[16];
-	static char buf[50];
-	char		*ptr;
-	int			i;
-	char		c;
+	char	*str;
 
-	i = 0;
-	c = 48;
-	while (i < 16 && c >= 48 && c <= 57)
-	{
-		conv[i++] = c++;
-		if (c == 58)
-		{
-			c = 97;
-			while (i < 16)
-				conv[i++] = c++;
-		}
-	}
-	ptr = &buf[49];
-	*ptr = '\0';
-	while (num != 0)
-	{
-		*--ptr = conv[num % base];
-		num /= base;
-	}
-	return (ptr);
+	if (!s)
+		return (NULL);
+	str = ft_strnew(len);
+	if (!str)
+		return (NULL);
+	ft_strncpy(str, s + start, len);
+	str[len] = 0;
+	return (str);
 }

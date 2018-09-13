@@ -6,7 +6,7 @@
 #    By: issmith <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/23 15:49:11 by issmith           #+#    #+#              #
-#    Updated: 2018/09/09 12:24:12 by issmith          ###   ########.fr        #
+#    Updated: 2018/09/12 13:24:19 by issmith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ WHITE = \033[37m
 all: $(NAME)
 
 $(NAME) : $(OBJS)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(FTLNK)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(FTLNK) $(LIBFT)
 	@echo "$(RESET)$(RED)Building binary....$(WHITE)$(RESET)"
 	@echo "$(GREEN)OK! its ready...$(RESET)"
 

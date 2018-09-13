@@ -1,43 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_convert.c                                       :+:      :+:    :+:   */
+/*   ft_putrstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: issmith <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/09 03:38:21 by issmith           #+#    #+#             */
-/*   Updated: 2018/09/09 05:44:35 by issmith          ###   ########.fr       */
+/*   Created: 2018/09/12 11:56:38 by issmith           #+#    #+#             */
+/*   Updated: 2018/09/12 12:33:17 by issmith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_convert(unsigned int num, int base)
+void	ft_putrstr(const char *s)
 {
-	static char conv[16];
-	static char buf[50];
-	char		*ptr;
-	int			i;
-	char		c;
+	int		i;
+	char	*alt;
 
 	i = 0;
-	c = 48;
-	while (i < 16 && c >= 48 && c <= 57)
-	{
-		conv[i++] = c++;
-		if (c == 58)
-		{
-			c = 97;
-			while (i < 16)
-				conv[i++] = c++;
-		}
-	}
-	ptr = &buf[49];
-	*ptr = '\0';
-	while (num != 0)
-	{
-		*--ptr = conv[num % base];
-		num /= base;
-	}
-	return (ptr);
+	while (s[i])
+		i++;
+	alt = (char *)malloc((sizeof(char) * i) + 2);
+	alt[0] = '\r';
+	i = -1;
+	while (s[++i])
+		alt[i + 1] = s[i];
+	alt[i + 1] = '\0';
+	write(1, alt, i + 1);
 }

@@ -1,43 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_convert.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: issmith <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/09 03:38:21 by issmith           #+#    #+#             */
-/*   Updated: 2018/09/09 05:44:35 by issmith          ###   ########.fr       */
+/*   Created: 2018/07/17 16:20:02 by issmith           #+#    #+#             */
+/*   Updated: 2018/07/17 19:05:34 by issmith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_convert(unsigned int num, int base)
+t_list		*ft_lstnew(void const *content, size_t content_size)
 {
-	static char conv[16];
-	static char buf[50];
-	char		*ptr;
-	int			i;
-	char		c;
+	t_list *ptr;
 
-	i = 0;
-	c = 48;
-	while (i < 16 && c >= 48 && c <= 57)
+	ptr = NULL;
+	if (!(ptr = (t_list*)malloc(sizeof(t_list))))
+		return (NULL);
+	if (!content || !content_size)
 	{
-		conv[i++] = c++;
-		if (c == 58)
-		{
-			c = 97;
-			while (i < 16)
-				conv[i++] = c++;
-		}
+		ptr->content = NULL;
+		ptr->content_size = 0;
+		ptr->next = NULL;
+		return (ptr);
 	}
-	ptr = &buf[49];
-	*ptr = '\0';
-	while (num != 0)
+	else
 	{
-		*--ptr = conv[num % base];
-		num /= base;
+		ptr->content = ft_memalloc(content_size);
+		ptr->content = ft_memcpy(ptr->content, content, content_size);
+		ptr->content_size = content_size;
 	}
 	return (ptr);
 }
