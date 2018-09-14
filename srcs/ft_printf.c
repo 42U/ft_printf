@@ -26,6 +26,12 @@ static int	ft_identify(char c)
 		return (0);
 }
 
+/*
+** this is the brain of my ft_printf. here i start the veradic ft_'s then
+** check the param sent in the str *format ft_identify handles that
+** then if valid params were sent ft_simplify happens. 
+*/
+
 int			ft_printf(char *format, ...)
 {
 	t_param *node;
