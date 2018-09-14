@@ -6,7 +6,7 @@
 /*   By: issmith <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/06 20:25:54 by issmith           #+#    #+#             */
-/*   Updated: 2018/09/14 15:07:50 by issmith          ###   ########.fr       */
+/*   Updated: 2018/09/14 15:49:23 by issmith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct		s_param
 	int				x;
 }					t_param;
 
+void				ft_countify(t_param **node, char *format);
 void				ft_trackify(t_param ***node, va_list **ap, char c);
 int					ft_altstrify(const char *s);
 int					ft_printf(char *format, ...);

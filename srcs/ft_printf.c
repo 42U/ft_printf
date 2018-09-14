@@ -6,7 +6,7 @@
 /*   By: issmith <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 13:37:37 by issmith           #+#    #+#             */
-/*   Updated: 2018/09/14 15:01:34 by issmith          ###   ########.fr       */
+/*   Updated: 2018/09/14 15:55:52 by issmith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int			ft_printf(char *format, ...)
 						ft_simplify(&node, &ap);
 				}
 				while (format[node->x] != '%' && format[node->x] != '\0')
-					ft_putchar(format[node->x++]);
+					ft_countify(&node, format);
 			}
 		}
 	va_end(ap);

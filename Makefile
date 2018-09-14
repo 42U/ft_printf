@@ -6,7 +6,7 @@
 #    By: issmith <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/23 15:49:11 by issmith           #+#    #+#              #
-#    Updated: 2018/09/14 15:06:26 by issmith          ###   ########.fr        #
+#    Updated: 2018/09/14 15:56:38 by issmith          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = ft_printf
 
 #	files
 FILENAMES = ft_printf.c main.c ft_simplify.c ft_init.c ft_altstr.c \
-			ft_trackify.c
+			ft_trackify.c ft_countify.c
 
 #	paths
 SRCS =$(addprefix srcs/, $(FILENAMES))
