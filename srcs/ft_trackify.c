@@ -12,6 +12,11 @@
 
 #include "ft_printf.h"
 
+/*
+** this handles the number based identifiers because they are special they
+** get their own function
+*/
+
 void	ft_trackify(t_param ***node, va_list **ap, char c)
 {
 	if (c == 'd')
