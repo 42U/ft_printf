@@ -6,7 +6,7 @@
 /*   By: issmith <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/16 19:12:01 by issmith           #+#    #+#             */
-/*   Updated: 2018/09/12 12:50:35 by issmith          ###   ########.fr       */
+/*   Updated: 2018/09/14 14:06:13 by issmith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef	struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+char				*ft_itoa(int n);
 void				ft_putrstr(const char *s);
 char				*ft_chg_lc(char *new_locale);
 char				*ft_get_lc(void);

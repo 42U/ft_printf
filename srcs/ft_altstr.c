@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_convert.c                                       :+:      :+:    :+:   */
+/*   ft_altstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: issmith <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/09 03:38:21 by issmith           #+#    #+#             */
-/*   Updated: 2018/09/14 11:05:16 by issmith          ###   ########.fr       */
+/*   Created: 2018/09/14 11:58:16 by issmith           #+#    #+#             */
+/*   Updated: 2018/09/14 15:04:46 by issmith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-char	*ft_convert(unsigned int num, int base)
+int		ft_altstrify(const char *s)
 {
-	static char *conv;
-	static char buf[66];
-	char		*ptr;
+	int i;
 
-	conv = "0123456789abcdef";
-	ptr = &buf[65];
-	*ptr = '\0';
-	while (num != 0)
-	{
-		*--ptr = conv[num % base];
-		num /= base;
-	}
-	return (ptr);
+	i = 0;
+	while (s[i])
+		i++;
+	write(1, s, i);
+	return (i);
 }

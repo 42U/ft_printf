@@ -6,37 +6,34 @@
 /*   By: issmith <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 14:56:14 by issmith           #+#    #+#             */
-/*   Updated: 2018/09/12 20:24:09 by issmith          ###   ########.fr       */
+/*   Updated: 2018/09/14 15:19:35 by issmith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_simplify(t_param **node, int tmp, char **ptr)
+void	ft_simplify(t_param **node, va_list *ap)
 {
-	if (*node->c == 's')
-		ft_putstr(va_arg(ap, char*));
-	else if (*node->c == 'd')
-		ft_putnbr(va_arg(ap, int));
-	else if (*node->c == 'i')
-		ft_putnbr((signed int)va_arg(ap, signed int));
-	else if (*node->c == 'c')
-	{
-		a = (unsigned char)va_arg(ap, int);
-		write(1, &a, 1);
-	}
-	else if (*node->c == 'o')
-		ft_putstr(ft_convert(va_arg(ap, unsigned int), 8));
-	else if (*node->c == 'u')
-		ft_putnbr((unsigned int)va_arg(ap, unsigned int));
-	else if (*node->c == 'x')
-		ft_putstr(ft_convert(va_arg(ap, unsigned int), 16));
-	else if (*node->c == 'p')
-	{
-		tmp = va_arg(ap, unsigned long long);
-		ptr = &tmp;
-		ft_putstr(*ptr);
-	}
+	if (node[0]->c == 's')
+		node[0]->k += ft_altstrify(va_arg(ap[0], char*));
+	else if (node[0]->c == 'd')
+		ft_trackify(&node, &ap, node[0]->c);
+	else if (node[0]->c == 'i')
+		ft_trackify(&node, &ap, node[0]->c);
+	else if ((node[0]->c == 'c') && (node[0]->c =
+				(unsigned char)va_arg(ap[0], int)))
+		ft_trackify(&node, &ap, 'X');
+	else if (node[0]->c == 'o')
+		node[0]->k += ft_altstrify(ft_convert(va_arg(ap[0], unsigned int), 8));
+	else if (node[0]->c == 'u')
+		ft_trackify(&node, &ap, node[0]->c);
+	else if (node[0]->c == 'x')
+		node[0]->k += ft_altstrify(ft_convert(va_arg(ap[0], unsigned int), 16));
+	else if (node[0]->c == 'p')
+		ft_trackify(&node, &ap, node[0]->c);
 	else
-		ft_putstr("error: invalid parameter passed to ft_printf\n");
+	{
+		ft_putstr("error: unrecognized identifier!");
+		exit(0);
+	}
 }
