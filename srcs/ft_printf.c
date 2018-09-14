@@ -12,6 +12,11 @@
 
 #include "ft_printf.h"
 
+/*
+** this just checks to make sure the format identifier is on the list of ones
+** we need to handle. if a flag is sent that isn't a part of the set 0 is ret.
+*/
+
 static int	ft_identify(char c)
 {
 	if (c == 's' || c == 'c' || c == 'd' || c == 'p' || c == 'i' || c == 'o'
