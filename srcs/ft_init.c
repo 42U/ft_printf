@@ -12,6 +12,11 @@
 
 #include "ft_printf.h"
 
+/*
+** this initialized the vars from my struct and checks to make sure
+** that the format string has chars in it
+*/
+
 int		ft_initify(t_param **node, char *format)
 {
 	node[0]->tmp = NULL;
