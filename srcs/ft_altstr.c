@@ -12,6 +12,10 @@
 
 #include "ft_printf.h"
 
+/*
+** this function writes the string to stdout and returns how many chars
+*/
+
 int		ft_altstrify(const char *s)
 {
 	int i;
