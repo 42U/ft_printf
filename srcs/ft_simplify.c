@@ -12,6 +12,10 @@
 
 #include "ft_printf.h"
 
+/*
+** this evaluates all the arguments and identifiers sent in from the ft_printf
+*/
+
 void	ft_simplify(t_param **node, va_list *ap)
 {
 	if (node[0]->c == 's')
